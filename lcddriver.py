@@ -3,10 +3,10 @@ from time import sleep
 
 # LCD Address
 #ADDRESS = 0x3F
-ADDRESS = 0x27
+DEFAULT_ADDRESS = 0x27
 
 # I2C bus
-BUS = 1
+DEFAULT_BUS = 1
 
 # commands
 LCD_CLEARDISPLAY = 0x01
@@ -59,9 +59,9 @@ class lcd:
   Class to control the 16x2 I2C LCD display from sainsmart from the Raspberry Pi
   """
 
-  def __init__(self):
+  def __init__(self, bus=DEFAULT_BUS, address=DEFAULT_ADDRESS):
     """Setup the display, turn on backlight and text display + ...?"""
-    self.device = i2c_lib.i2c_device(ADDRESS, BUS)
+    self.device = i2c_lib.i2c_device(address, bus)
 
     self.write(0x03)
     self.write(0x03)
